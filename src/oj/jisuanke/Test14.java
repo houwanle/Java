@@ -1,0 +1,69 @@
+package test;
+/*
+给定一个数组 AA，除了一个数出现一次之外，其余数都出现三次。找出出现一次的数。
+如：{1,2,1,2,1,2,7}，找出 7。
+你的算法只能是线性时间的复杂度，并且不能使用额外的空间哦～
+输入格式
+第一行输入一个数 n(1≤n≤500)，代表数组的长度。
+接下来一行输入 n个 int 范围内（−2147483648…2147483647）的整数，表示数组 A。保证输入的数组合法。
+输出格式
+输出一个整数，表示数组中只出现一次的数。
+样例输入
+4
+0 0 0 5
+样例输出
+5
+ */
+ 
+import java.util.Scanner;
+
+public class Test14 {
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+		int len = sc.nextInt();
+		int[] arr = new int[len];
+		for(int i = 0; i < len; i++){
+			arr[i] = sc.nextInt();
+		}
+		int count = 0;
+		int elem = -1;
+		for(int i = 0; i < len; i++){
+			for(int j = 0; j < len; j++){
+				if(arr[i] == arr[j]){
+					count++;
+				}
+			}
+			if(count == 1){
+				elem = arr[i];
+				break;
+			}else{
+				count = 0;
+			}
+		}
+		System.out.println(elem);
+	}
+}
+
+======================================================================================================
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Test14 {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		ArrayList<Integer> list = new ArrayList<Integer>(n);
+		for (int i = 0; i < n; i++) {
+			list.add(sc.nextInt());
+		}
+		for (int i = 0; i < n; i++) {
+			int elem = list.remove(i);
+			if (!list.contains(elem)) {
+				System.out.println(elem);
+			} else {
+				list.add(i, elem);
+			}
+		}
+	}
+}
