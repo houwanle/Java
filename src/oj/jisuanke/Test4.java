@@ -1,0 +1,38 @@
+package test;
+/*
+斐波那契数列是一种非常有意思的数列，由 0和 1开始，之后的斐波那契系数就由之前的两数相加。
+用数学公式定义斐波那契数列则可以看成如下形式：
+F0 = 0
+F1 = 1
+Fn = F(n-1)+F(n-2)
+我们约定Fn表示斐波那契数列的第 n项，你能知道斐波那契数列中的任何一项吗？
+
+输入格式
+输入包括一行，包括一个整数 N(0<=N<=50)
+输出格式
+输出包括一行，包括一个整数，为斐波那契数列的第 N项的值。
+
+样例输入
+7
+样例输出
+13
+*/
+import java.util.Scanner;
+
+public class Test4 {
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		System.out.println(fun(n));
+	}
+
+	private static int fun(int n) {
+		if(n == 0){
+			return 0;
+		}else if(n == 1){
+			return 1;
+		}else{
+			return fun(n-1) + fun(n-2);
+		}
+	}
+}

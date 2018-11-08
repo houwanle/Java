@@ -1,0 +1,36 @@
+package test;
+/*
+给定一个整数 num，将整数转换成罗马数字。
+如 1,2,3,4,5对应的罗马数字分别为I，II，III，IV，V等
+
+输入格式
+第一行输入一个整数 num(1≤num≤3999)。
+输出格式
+输出 num对应的罗马数字。
+
+样例输入
+123
+样例输出 
+CXXIII
+ */
+import java.util.Scanner;
+
+public class Test12 {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		StringBuilder sb = new StringBuilder();
+		String[][] r = { { "", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX" },
+				{ "", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC" },
+				{ "", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM" }, 
+				{ "", "M", "MM", "MMM" } };
+		int n = sc.nextInt();
+		sb.append(r[3][n / 1000 % 10]);
+		sb.append(r[2][n / 100 % 10]);
+		sb.append(r[1][n / 10 % 10]);
+		sb.append(r[0][n % 10]);
+		System.out.println(sb);
+	}
+}
+
+
+

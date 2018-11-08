@@ -1,0 +1,76 @@
+package test;
+/*
+给定一个罗马数字s，( I<=s<=MMMCMXCIX)（即1到3999），将罗马数字转换成整数。
+如罗马数字I，II，III，IV，V分别代表数字1, 2, 3, 4, 5。
+格式：
+   第一行输入一个罗马数字，接下来输出对应的整数。
+提示：
+   首先要来了解一下罗马数字表示法，基本字符有7个：I，V，X，L，C，D，M，
+        分别表示1，5，10，50，100，500，1000。
+在构成数字的时候，有下列规则：
+1、相同的数字连写，所表示的数等于这些数字相加得到的数，如：Ⅲ = 3；
+2、小的数字在大的数字的右边，所表示的数等于这些数字相加得到的数， 如：Ⅷ = 8；Ⅻ = 12；
+3、小的数字，（限于Ⅰ、X 和C）在大的数字的左边，所表示的数等于大数减小数得到的数，如：Ⅳ= 4；Ⅸ= 9；
+4、正常使用时，连写的数字重复不得超过三次。
+
+样例输入
+CXXIII
+样例输出
+123
+*/
+
+import java.util.Scanner;
+
+public class Test13 {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		String str = sc.nextLine();
+
+		int len = str.length();
+		int sum = 0;
+
+		for (int i = 0; i < len; i++) {
+			if (str.charAt(i) == "I".charAt(0)) {
+				if (i != len - 1 && (str.charAt(i + 1) == "V".charAt(0) || str.charAt(i + 1) == "X".charAt(0))) {
+					sum--;
+				} else {
+					sum++;
+				}
+			}
+
+			if (str.charAt(i) == "V".charAt(0)) {
+				sum += 5;
+			}
+
+			if (str.charAt(i) == "X".charAt(0)) {
+				if (i != len - 1 && (str.charAt(i + 1) == "C".charAt(0) || str.charAt(i + 1) == "L".charAt(0))) {
+					sum -= 10;
+				} else {
+					sum += 10;
+				}
+			}
+
+			if (str.charAt(i) == "L".charAt(0)) {
+				sum += 50;
+			}
+
+			if (str.charAt(i) == "C".charAt(0)) {
+				if (i != len - 1 && (str.charAt(i + 1) == "D".charAt(0) || str.charAt(i + 1) == "M".charAt(0))) {
+					sum -= 100;
+				} else {
+					sum += 100;
+				}
+			}
+
+			if (str.charAt(i) == "D".charAt(0)) {
+				sum += 500;
+			}
+
+			if (str.charAt(i) == "M".charAt(0)) {
+				sum += 1000;
+			}
+
+		}
+		System.out.println(sum);
+	}
+}
