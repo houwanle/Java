@@ -1,0 +1,51 @@
+package test;
+/*
+晓萌希望将1到N的连续整数组成的集合划分成两个子集合，且保证每个集合的数字和是相等。
+例如，对于N=3，对应的集合{1，2，3}能被划分成{3} 和 {1,2}两个子集合.
+这两个子集合中元素分别的和是相等的。
+对于N=3，我们只有一种划分方法，而对于N=7时，我们将有4种划分的方案。
+输入包括一行，仅一个整数，表示N的值（1≤N≤39）。
+输出包括一行，仅一个整数，晓萌可以划分对应N的集合的方案的个数。当没发划分时，输出0。
+
+样例输入
+7
+样例输出
+4
+ */
+
+import java.util.Scanner;
+
+public class Test27 {
+	public static void main(String[] args) {
+		fun();
+	}
+
+	public static void fun() {
+		// 首先确定分为两个相等的子集
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		double sum = (double) (n * (n + 1)) / 4;
+		if (sum != (int) sum) {
+			System.out.println(0);
+			return;
+		}
+		int m = (int) (sum + 1);
+		long dp[][] = new long[n + 1][m];
+		dp[0][0] = 1;
+		for (int i = 1; i < dp.length; i++) {
+			for (int j = 0; j < dp[0].length; j++) {
+				if (i > j) {
+					dp[i][j] = dp[i - 1][j];
+				} else {
+					if (i <= j) {
+						dp[i][j] = dp[i - 1][j] + dp[i - 1][j - i];
+					}
+				}
+			}
+		}
+		if (dp[n][m - 1] % 2 == 0)
+			System.out.println(dp[n][m - 1] / 2);
+		else
+			System.out.println(0);
+	}
+}

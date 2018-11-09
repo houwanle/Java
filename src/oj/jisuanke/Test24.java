@@ -1,0 +1,45 @@
+package test;
+/*
+给定一个数组 numberi，找到两个数，使得他们的和为一个给定的数值target。
+其中：number[index1]+number[index2]==target。
+注意：index1必须小于index2且不能为0。假设每一组输入只有唯一的一组解。
+例如，对于数组[2,7,11,15] 和target=9，index1的值为1，index2的值为2。
+
+输入格式
+第一行输入一个整数n(1≤n≤500)，接下来的两行分别输入n 个整数组成的数组 numberi(0≤numberi≤1000) 
+和一个整数 target(0≤target≤1000)。
+输出格式
+输出一行由空格分隔的两个整数index1 和 index2。注意，下标从1 开始。
+
+样例输入
+3
+5 75 25
+100
+样例输出
+2 3
+ */
+import java.util.Scanner;
+
+public class Test24 {
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+		int n = sc.nextInt();
+		int[] arr = new int[n];
+		for(int i = 0; i < n; i++){
+			arr[i] = sc.nextInt();
+		}
+		int target = sc.nextInt();
+		int index1 = 0;
+		int index2 = 0;
+		for(int i = 0; i < n-1; i++){
+			for(int j = i+1; j < n; j++){
+				if(arr[i]+arr[j]==target){
+					index1 = i + 1;
+					index2 = j + 1;
+					System.out.println(index1+ " " + index2);
+					return;
+				}
+			}
+		}
+	}
+}
